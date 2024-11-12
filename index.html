@@ -6,31 +6,27 @@
     <title>Πρόγραμμα Προπόνησης</title>
     <link rel="stylesheet" href="style.css">
      <script>
-        async function saveData(exercise, setsId, weightId, repsId) {
+        // Συναρτήσεις για την αποθήκευση δεδομένων
+        function saveData(exercise, setsId, weightId, repsId) {
             // Ανάγνωση τιμών από τα πεδία φόρμας
             const sets = document.getElementById(setsId).value;
             const weight = document.getElementById(weightId).value;
             const reps = document.getElementById(repsId).value;
 
             // Δημιουργία URL με παραμέτρους
-            const url = `https://script.google.com/macros/s/AKfycbzc0zr66tJGwGuVF44wlmxLLjPx7u6AcJIToGPLlb-b4Odm0BvHgCs-pPfAdrWGC49d/exec?exercise=${exercise}&sets=${sets}&weight=${weight}&reps=${reps}`;
+            const url = `https://script.google.com/macros/s/AKfycbzc0zr66tJGwGuVF44wlmxLLjPx7u6AcJIToGPLlb-b4Odm0BvHgCs-pPfAdrWGC49d/exec?callback=handleResponse&exercise=${exercise}&sets=${sets}&weight=${weight}&reps=${reps}`;
 
-            // Εκτέλεση fetch για αποθήκευση δεδομένων
-            try {
-                const response = await fetch(url);
-                const result = await response.text();
-                console.log("Απάντηση από τον Server:", result);
+            // Δημιουργία δυναμικού script για JSONP
+            const script = document.createElement('script');
+            script.src = url;
+            document.body.appendChild(script);
+        }
 
-                if (result === "Success") {
-                    alert("Τα δεδομένα αποθηκεύτηκαν επιτυχώς!");
-                    document.getElementById(setsId).value = '';
-                    document.getElementById(weightId).value = '';
-                    document.getElementById(repsId).value = '';
-                } else {
-                    alert("Σφάλμα κατά την αποθήκευση.");
-                }
-            } catch (error) {
-                console.error("Σφάλμα:", error);
+        // Συναρτήσεις για την επεξεργασία της απόκρισης JSONP
+        function handleResponse(response) {
+            if (response.status === "success") {
+                alert("Τα δεδομένα αποθηκεύτηκαν επιτυχώς!");
+            } else {
                 alert("Αποτυχία αποθήκευσης δεδομένων.");
             }
         }
