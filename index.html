@@ -5,26 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Πρόγραμμα Προπόνησης</title>
     <link rel="stylesheet" href="style.css">
-    <script>
+     <script>
         async function saveData(exercise, setsId, weightId, repsId) {
+            // Ανάγνωση τιμών από τα πεδία φόρμας
             const sets = document.getElementById(setsId).value;
             const weight = document.getElementById(weightId).value;
             const reps = document.getElementById(repsId).value;
 
-            const response = await fetch('https://script.google.com/macros/s/AKfycbzc0zr66tJGwGuVF44wlmxLLjPx7u6AcJIToGPLlb-b4Odm0BvHgCs-pPfAdrWGC49d/exec', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ exercise, sets, weight, reps }),
-            });
+            // Δημιουργία URL με παραμέτρους
+            const url = `https://script.google.com/macros/s/AKfycbzc0zr66tJGwGuVF44wlmxLLjPx7u6AcJIToGPLlb-b4Odm0BvHgCs-pPfAdrWGC49d/exec?exercise=${exercise}&sets=${sets}&weight=${weight}&reps=${reps}`;
 
-            const result = await response.json();
-            if (result.status === "success") {
-                alert("Τα δεδομένα αποθηκεύτηκαν επιτυχώς!");
-                document.getElementById(setsId).value = '';
-                document.getElementById(weightId).value = '';
-                document.getElementById(repsId).value = '';
-            } else {
-                alert("Σφάλμα κατά την αποθήκευση.");
+            // Εκτέλεση fetch για αποθήκευση δεδομένων
+            try {
+                const response = await fetch(url);
+                const result = await response.text();
+                console.log("Απάντηση από τον Server:", result);
+
+                if (result === "Success") {
+                    alert("Τα δεδομένα αποθηκεύτηκαν επιτυχώς!");
+                    document.getElementById(setsId).value = '';
+                    document.getElementById(weightId).value = '';
+                    document.getElementById(repsId).value = '';
+                } else {
+                    alert("Σφάλμα κατά την αποθήκευση.");
+                }
+            } catch (error) {
+                console.error("Σφάλμα:", error);
+                alert("Αποτυχία αποθήκευσης δεδομένων.");
             }
         }
     </script>
