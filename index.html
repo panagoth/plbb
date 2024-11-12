@@ -11,7 +11,7 @@
             const weight = document.getElementById(weightId).value;
             const reps = document.getElementById(repsId).value;
 
-            const response = await fetch('https://script.google.com/macros/s/AKfycbzc0zr66tJGwGuVF44wlmxLLjPx7u6AcJIToGPLlb-b4Odm0BvHgCs-pPfAdrWGC49d/exec', { 
+            const response = await fetch('https://script.google.com/macros/s/AKfycbzc0zr66tJGwGuVF44wlmxLLjPx7u6AcJIToGPLlb-b4Odm0BvHgCs-pPfAdrWGC49d/exec', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ exercise, sets, weight, reps }),
@@ -20,7 +20,6 @@
             const result = await response.json();
             if (result.status === "success") {
                 alert("Τα δεδομένα αποθηκεύτηκαν επιτυχώς!");
-                // Μηδενισμός πεδίων φόρμας
                 document.getElementById(setsId).value = '';
                 document.getElementById(weightId).value = '';
                 document.getElementById(repsId).value = '';
@@ -35,61 +34,208 @@
     <div class="container">
         <h1>Πρόγραμμα Προπόνησης</h1>
 
-        <h2>Ημέρα 1: Squat + Πόδια</h2>
+        <!-- Ημέρα 1: Squat + Πόδια -->
+        <h2>Ημέρα 1: Δύναμη (Squat) + Bodybuilding Πόδια</h2>
         <ul>
             <li>
-                Back Squat: 3x5 (140 κιλά) <br>
+                Back Squat: 5x5 <br>
                 <form onsubmit="event.preventDefault(); saveData('Back Squat', 'back_squat_sets', 'back_squat_weight', 'back_squat_reps');">
                     <label for="back_squat_sets">Σετ:</label>
-                    <input type="number" id="back_squat_sets" name="back_squat_sets" placeholder="π.χ. 3" required>
+                    <input type="number" id="back_squat_sets" placeholder="π.χ. 5" required>
                     <label for="back_squat_weight">Κιλά:</label>
-                    <input type="number" id="back_squat_weight" name="back_squat_weight" placeholder="π.χ. 140" required>
+                    <input type="number" id="back_squat_weight" placeholder="π.χ. 140" required>
                     <label for="back_squat_reps">Επαναλήψεις:</label>
-                    <input type="number" id="back_squat_reps" name="back_squat_reps" placeholder="π.χ. 5" required>
+                    <input type="number" id="back_squat_reps" placeholder="π.χ. 5" required>
                     <button type="submit">Αποθήκευση</button>
                 </form>
             </li>
             <li>
-                Romanian Deadlift: 3x8 <br>
+                Romanian Deadlift: 3x8-10 <br>
                 <form onsubmit="event.preventDefault(); saveData('Romanian Deadlift', 'romanian_sets', 'romanian_weight', 'romanian_reps');">
                     <label for="romanian_sets">Σετ:</label>
-                    <input type="number" id="romanian_sets" name="romanian_sets" placeholder="π.χ. 3" required>
+                    <input type="number" id="romanian_sets" placeholder="π.χ. 3" required>
                     <label for="romanian_weight">Κιλά:</label>
-                    <input type="number" id="romanian_weight" name="romanian_weight" placeholder="π.χ. 100" required>
+                    <input type="number" id="romanian_weight" placeholder="π.χ. 100" required>
                     <label for="romanian_reps">Επαναλήψεις:</label>
-                    <input type="number" id="romanian_reps" name="romanian_reps" placeholder="π.χ. 8" required>
+                    <input type="number" id="romanian_reps" placeholder="π.χ. 8" required>
+                    <button type="submit">Αποθήκευση</button>
+                </form>
+            </li>
+            <li>
+                Leg Press: 3x12-15 <br>
+                <form onsubmit="event.preventDefault(); saveData('Leg Press', 'leg_press_sets', 'leg_press_weight', 'leg_press_reps');">
+                    <label for="leg_press_sets">Σετ:</label>
+                    <input type="number" id="leg_press_sets" placeholder="π.χ. 3" required>
+                    <label for="leg_press_weight">Κιλά:</label>
+                    <input type="number" id="leg_press_weight" placeholder="π.χ. 200" required>
+                    <label for="leg_press_reps">Επαναλήψεις:</label>
+                    <input type="number" id="leg_press_reps" placeholder="π.χ. 12" required>
+                    <button type="submit">Αποθήκευση</button>
+                </form>
+            </li>
+            <li>
+                Leg Curls: 3x12-15 <br>
+                <form onsubmit="event.preventDefault(); saveData('Leg Curls', 'leg_curls_sets', 'leg_curls_weight', 'leg_curls_reps');">
+                    <label for="leg_curls_sets">Σετ:</label>
+                    <input type="number" id="leg_curls_sets" placeholder="π.χ. 3" required>
+                    <label for="leg_curls_weight">Κιλά:</label>
+                    <input type="number" id="leg_curls_weight" placeholder="π.χ. 60" required>
+                    <label for="leg_curls_reps">Επαναλήψεις:</label>
+                    <input type="number" id="leg_curls_reps" placeholder="π.χ. 12" required>
+                    <button type="submit">Αποθήκευση</button>
+                </form>
+            </li>
+            <li>
+                Calf Raises: 4x15-20 <br>
+                <form onsubmit="event.preventDefault(); saveData('Calf Raises', 'calf_raises_sets', 'calf_raises_weight', 'calf_raises_reps');">
+                    <label for="calf_raises_sets">Σετ:</label>
+                    <input type="number" id="calf_raises_sets" placeholder="π.χ. 4" required>
+                    <label for="calf_raises_weight">Κιλά:</label>
+                    <input type="number" id="calf_raises_weight" placeholder="π.χ. 80" required>
+                    <label for="calf_raises_reps">Επαναλήψεις:</label>
+                    <input type="number" id="calf_raises_reps" placeholder="π.χ. 15" required>
                     <button type="submit">Αποθήκευση</button>
                 </form>
             </li>
         </ul>
 
-        <h2>Ημέρα 2: Bench Press + Στήθος/Ώμοι</h2>
+        <!-- Ημέρα 2: Bench Press + Στήθος/Ώμοι -->
+        <h2>Ημέρα 2: Δύναμη (Bench Press) + Bodybuilding Στήθος/Ώμοι</h2>
         <ul>
             <li>
-                Bench Press: 4x4 <br>
+                Bench Press: 5x5 <br>
                 <form onsubmit="event.preventDefault(); saveData('Bench Press', 'bench_press_sets', 'bench_press_weight', 'bench_press_reps');">
                     <label for="bench_press_sets">Σετ:</label>
-                    <input type="number" id="bench_press_sets" name="bench_press_sets" placeholder="π.χ. 4" required>
+                    <input type="number" id="bench_press_sets" placeholder="π.χ. 5" required>
                     <label for="bench_press_weight">Κιλά:</label>
-                    <input type="number" id="bench_press_weight" name="bench_press_weight" placeholder="π.χ. 80" required>
+                    <input type="number" id="bench_press_weight" placeholder="π.χ. 100" required>
                     <label for="bench_press_reps">Επαναλήψεις:</label>
-                    <input type="number" id="bench_press_reps" name="bench_press_reps" placeholder="π.χ. 4" required>
+                    <input type="number" id="bench_press_reps" placeholder="π.χ. 5" required>
+                    <button type="submit">Αποθήκευση</button>
+                </form>
+            </li>
+            <li>
+                Incline Bench Press: 3x8-10 <br>
+                <form onsubmit="event.preventDefault(); saveData('Incline Bench Press', 'incline_bench_sets', 'incline_bench_weight', 'incline_bench_reps');">
+                    <label for="incline_bench_sets">Σετ:</label>
+                    <input type="number" id="incline_bench_sets" placeholder="π.χ. 3" required>
+                    <label for="incline_bench_weight">Κιλά:</label>
+                    <input type="number" id="incline_bench_weight" placeholder="π.χ. 70" required>
+                    <label for="incline_bench_reps">Επαναλήψεις:</label>
+                    <input type="number" id="incline_bench_reps" placeholder="π.χ. 8" required>
+                    <button type="submit">Αποθήκευση</button>
+                </form>
+            </li>
+            <li>
+                Overhead Press: 4x8-10 <br>
+                <form onsubmit="event.preventDefault(); saveData('Overhead Press', 'overhead_sets', 'overhead_weight', 'overhead_reps');">
+                    <label for="overhead_sets">Σετ:</label>
+                    <input type="number" id="overhead_sets" placeholder="π.χ. 4" required>
+                    <label for="overhead_weight">Κιλά:</label>
+                    <input type="number" id="overhead_weight" placeholder="π.χ. 50" required>
+                    <label for="overhead_reps">Επαναλήψεις:</label>
+                    <input type="number" id="overhead_reps" placeholder="π.χ. 10" required>
+                    <button type="submit">Αποθήκευση</button>
+                </form>
+            </li>
+            <li>
+                Lateral Raises: 3x12-15 <br>
+                <form onsubmit="event.preventDefault(); saveData('Lateral Raises', 'lateral_sets', 'lateral_weight', 'lateral_reps');">
+                    <label for="lateral_sets">Σετ:</label>
+                    <input type="number" id="lateral_sets" placeholder="π.χ. 3" required>
+                    <label for="lateral_weight">Κιλά:</label>
+                    <input type="number" id="lateral_weight" placeholder="π.χ. 15" required>
+                    <label for="lateral_reps">Επαναλήψεις:</label>
+                    <input type="number" id="lateral_reps" placeholder="π.χ. 12" required>
+                    <button type="submit">Αποθήκευση</button>
+                </form>
+            </li>
+            <li>
+                Tricep Dips: 3x8-10 <br>
+                <form onsubmit="event.preventDefault(); saveData('Tricep Dips', 'dips_sets', 'dips_weight', 'dips_reps');">
+                    <label for="dips_sets">Σετ:</label>
+                    <input type="number" id="dips_sets" placeholder="π.χ. 3" required>
+                    <label for="dips_weight">Κιλά:</label>
+                    <input type="number" id="dips_weight" placeholder="π.χ. 0" required>
+                    <label for="dips_reps">Επαναλήψεις:</label>
+                    <input type="number" id="dips_reps" placeholder="π.χ. 8" required>
                     <button type="submit">Αποθήκευση</button>
                 </form>
             </li>
         </ul>
 
-        <h2>Ημέρα 3: Deadlift + Πλάτη/Χέρια</h2>
+        <!-- Ημέρα 3: Deadlift + Πλάτη/Χέρια -->
+        <h2>Ημέρα 3: Δύναμη (Deadlift) + Bodybuilding Πλάτη/Χέρια</h2>
         <ul>
             <li>
-                Deadlift: 4x3 <br>
+                Deadlift: 5x3 <br>
                 <form onsubmit="event.preventDefault(); saveData('Deadlift', 'deadlift_sets', 'deadlift_weight', 'deadlift_reps');">
                     <label for="deadlift_sets">Σετ:</label>
-                    <input type="number" id="deadlift_sets" name="deadlift_sets" placeholder="π.χ. 4" required>
+                    <input type="number" id="deadlift_sets" placeholder="π.χ. 5" required>
                     <label for="deadlift_weight">Κιλά:</label>
-                    <input type="number" id="deadlift_weight" name="deadlift_weight" placeholder="π.χ. 180" required>
+                    <input type="number" id="deadlift_weight" placeholder="π.χ. 180" required>
                     <label for="deadlift_reps">Επαναλήψεις:</label>
-                    <input type="number" id="deadlift_reps" name="deadlift_reps" placeholder="π.χ. 3" required>
+                    <input type="number" id="deadlift_reps" placeholder="π.χ. 3" required>
+                    <button type="submit">Αποθήκευση</button>
+                </form>
+            </li>
+            <li>
+                Pull-Ups: 3x6-8 <br>
+                <form onsubmit="event.preventDefault(); saveData('Pull-Ups', 'pull_ups_sets', 'pull_ups_weight', 'pull_ups_reps');">
+                    <label for="pull_ups_sets">Σετ:</label>
+                    <input type="number" id="pull_ups_sets" placeholder="π.χ. 3" required>
+                    <label for="pull_ups_weight">Κιλά:</label>
+                    <input type="number" id="pull_ups_weight" placeholder="π.χ. 0" required>
+                    <label for="pull_ups_reps">Επαναλήψεις:</label>
+                    <input type="number" id="pull_ups_reps" placeholder="π.χ. 8" required>
+                    <button type="submit">Αποθήκευση</button>
+                </form>
+            </li>
+            <li>
+                Barbell Rows: 4x8-10 <br>
+                <form onsubmit="event.preventDefault(); saveData('Barbell Rows', 'rows_sets', 'rows_weight', 'rows_reps');">
+                    <label for="rows_sets">Σετ:</label>
+                    <input type="number" id="rows_sets" placeholder="π.χ. 4" required>
+                    <label for="rows_weight">Κιλά:</label>
+                    <input type="number" id="rows_weight" placeholder="π.χ. 100" required>
+                    <label for="rows_reps">Επαναλήψεις:</label>
+                    <input type="number" id="rows_reps" placeholder="π.χ. 10" required>
+                    <button type="submit">Αποθήκευση</button>
+                </form>
+            </li>
+            <li>
+                Dumbbell Rows: 3x12-15 <br>
+                <form onsubmit="event.preventDefault(); saveData('Dumbbell Rows', 'dumbbell_rows_sets', 'dumbbell_rows_weight', 'dumbbell_rows_reps');">
+                    <label for="dumbbell_rows_sets">Σετ:</label>
+                    <input type="number" id="dumbbell_rows_sets" placeholder="π.χ. 3" required>
+                    <label for="dumbbell_rows_weight">Κιλά:</label>
+                    <input type="number" id="dumbbell_rows_weight" placeholder="π.χ. 40" required>
+                    <label for="dumbbell_rows_reps">Επαναλήψεις:</label>
+                    <input type="number" id="dumbbell_rows_reps" placeholder="π.χ. 12" required>
+                    <button type="submit">Αποθήκευση</button>
+                </form>
+            </li>
+            <li>
+                Barbell Curls: 3x10-12 <br>
+                <form onsubmit="event.preventDefault(); saveData('Barbell Curls', 'curls_sets', 'curls_weight', 'curls_reps');">
+                    <label for="curls_sets">Σετ:</label>
+                    <input type="number" id="curls_sets" placeholder="π.χ. 3" required>
+                    <label for="curls_weight">Κιλά:</label>
+                    <input type="number" id="curls_weight" placeholder="π.χ. 40" required>
+                    <label for="curls_reps">Επαναλήψεις:</label>
+                    <input type="number" id="curls_reps" placeholder="π.χ. 12" required>
+                    <button type="submit">Αποθήκευση</button>
+                </form>
+            </li>
+            <li>
+                Skull Crushers: 3x10-12 <br>
+                <form onsubmit="event.preventDefault(); saveData('Skull Crushers', 'skull_crushers_sets', 'skull_crushers_weight', 'skull_crushers_reps');">
+                    <label for="skull_crushers_sets">Σετ:</label>
+                    <input type="number" id="skull_crushers_sets" placeholder="π.χ. 3" required>
+                    <label for="skull_crushers_weight">Κιλά:</label>
+                    <input type="number" id="skull_crushers_weight" placeholder="π.χ. 40" required>
+                    <label for="skull_crushers_reps">Επαναλήψεις:</label>
+                    <input type="number" id="skull_crushers_reps" placeholder="π.χ. 10" required>
                     <button type="submit">Αποθήκευση</button>
                 </form>
             </li>
